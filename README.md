@@ -25,14 +25,17 @@ O projeto é desenvolvido em conjunto pelas seguintes frentes:
  
 ## 🚀 Objetivo
  
-Desenvolver um sistema operacional que combine:
+Desenvolver um ERP que combine:
  
 - ⚡ **Performance** — arquitetura moderna e eficiente
 - 🎯 **Usabilidade** — interface intuitiva e agradável
 - 🛡️ **Segurança** — proteção de dados e resiliência a ameaças
 - 🎨 **Identidade visual** — design atualizado e coeso
 - 📈 **Inteligência** — uso de dados e ML para melhorar a experiência
----
+
+O projeto tem como foco um ERP pensado em praticidade e acessibilidade para pequenos negócios e profissionais autônomos. A proposta central é entregar os módulos essenciais de gestão com uma experiência simples, diferente da complexidade dos ERPs tradicionais do mercado. 
+
+ ---
  
 ## 🛠️ Status do Projeto
  
