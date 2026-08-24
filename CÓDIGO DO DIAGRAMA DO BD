@@ -1,0 +1,147 @@
+// 1. NÚCLEO DE SEGURANÇA (MULTI-TENANT)
+Table empresas {
+  id integer [primary key]
+  nome_completo varchar
+  nome_fantasia varchar // opcional
+  cnpj varchar
+  tipo varchar // MEI, ME ou EPP
+  plano_assinatura varchar // gratis ou pago
+  senha_empresa varchar
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table usuarios {
+  id integer [primary key]
+  empresa_id integer [not null]
+  nome varchar
+  email varchar
+  senha_hash varchar
+  funcao_operacional varchar // Dono ou Colaborador
+  created_at timestamp
+  updated_at timestamp
+}
+
+// 2. MÓDULO DE CADASTROS BASE
+Table clientes {
+  id integer [primary key]
+  empresa_id integer [not null]
+  nome varchar
+  cpf_cnpj varchar
+  email varchar
+  telefone varchar
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table fornecedores {
+  id integer [primary key]
+  empresa_id integer [not null]
+  razao_social varchar
+  cnpj varchar
+  email varchar
+  telefone int
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table produtos_servicos {
+  id integer [primary key]
+  empresa_id integer [not null]
+  fornecedor_id integer [not null]
+  fornecedor varchar
+  nome varchar
+  sku varchar
+  tipo_pedido varchar // produto ou serviço
+  preco_venda decimal
+  preco_custo decimal
+  quantidade_estoque integer
+  limite_minimo_estoque integer
+  observação jsonb // Flexibilidade para IA/Atributos
+  created_at timestamp
+  updated_at timestamp
+}
+
+// 3. MÓDULO FINANCEIRO
+Table centro_custos {
+  id integer [primary key]
+  empresa_id integer [not null]
+  nome varchar
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table transacoes_financeiras {
+  id integer [primary key]
+  empresa_id integer [not null]
+  tipo varchar // RECEITA ou DESPESA
+  valor decimal
+  categoria varchar
+  data_vencimento timestamp
+  status varchar // PAGO ou PENDENTE
+  produtos_servicos_id integer [not null]
+  vendas_id integer [not null]// FK opcional para Venda, Folha ou pedido com o fornecedor
+  created_at timestamp
+  updated_at timestamp
+}
+
+// 4. MÓDULO DE VENDAS E ESTOQUE
+Table vendas {
+  id integer [primary key]
+  empresa_id integer [not null]
+  cliente_id integer [not null]
+  data_venda timestamp
+  valor_total decimal
+  forma_pagamento varchar
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table itens_venda {
+  id integer [primary key]
+  venda_id integer [not null]
+  produto_id integer [not null]
+  quantidade integer
+  preco_unitario_praticado decimal
+  created_at timestamp
+  updated_at timestamp
+}
+
+// 5. MÓDULO DE RECURSOS HUMANOS (RH)
+Table funcionarios {
+  id integer [primary key]
+  empresa_id integer [not null]
+  nome varchar
+  cargo varchar
+  data_admissao timestamp
+  data_demissao timestamp
+  salario_base decimal
+  tipo_contrato varchar // CLT, PJ, aprendiz
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table ferias {
+  id integer [primary key]
+  funcionario_id integer [not null]
+  empresa_id integer [not null]
+  data_inicio timestamp
+  data_fim timestamp
+  status varchar
+  valor decimal
+  created_at timestamp
+  updated_at timestamp
+}
+
+// RELACIONAMENTOS (CHAVES ESTRANGEIRAS)
+Ref: ferias.funcionario_id > funcionarios.id
+Ref: usuarios.empresa_id > empresas.id
+Ref: clientes.empresa_id > empresas.id
+Ref: fornecedores.empresa_id > empresas.id
+Ref: produtos_servicos.empresa_id > empresas.id
+Ref: centro_custos.empresa_id > empresas.id
+Ref: transacoes_financeiras.empresa_id > empresas.id
+Ref: funcionarios.empresa_id > empresas.id
+Ref: vendas.empresa_id > empresas.id
+Ref: vendas.cliente_id > clientes.id
+Ref: itens_venda.venda_id > vendas.id
