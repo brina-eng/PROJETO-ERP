@@ -2,7 +2,8 @@
  
 ## 📌 Sobre o Projeto
  
-Este repositório reúne o trabalho colaborativo de uma equipe multidisciplinar dedicada a criar um **sistema operacional moderno**, com tecnologias atualizadas e uma identidade visual cuidadosamente projetada. O objetivo é integrar diferentes áreas de conhecimento em um único produto coeso, robusto e visualmente atraente.
+Este repositório reúne o trabalho colaborativo de uma equipe multidisciplinar dedicada a criar um **Enterprise Resource Planning**, estruturado como um sistema integrado de gestão que unifica as áreas de 
+finanças, estoque, vendas, compras, produção e recursos humanos.
  
 ---
  
