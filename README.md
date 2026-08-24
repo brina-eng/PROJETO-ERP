@@ -39,12 +39,6 @@ Este projeto está **em desenvolvimento ativo**, com contribuições contínuas 
  
 ---
  
-## 🤝 Contribuindo
- 
-Contribuições são bem-vindas! Sinta-se à vontade para abrir *issues*, sugerir melhorias ou enviar *pull requests*.
- 
----
- 
 ## 📄 Licença
  
 Licença a ser definida.
